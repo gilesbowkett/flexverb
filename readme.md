@@ -215,14 +215,12 @@ forms, "farmer" in Latin takes at least 10 different forms, and that's
 just for beginner-level stuff like "the field was plowed by the farmers"
 and "this is the farmer's farm."
 
-Ancient Greek is even more complicated. I think the average word can
-take a total of 17 different forms, while irregular words can take
-more. Also, Latin was standardized throughout the Roman Empire for
-hundreds of years -- thousands, in fact, if you count the Eastern Roman
-Empire after the fall of Rome itself -- while Greek consists of many
-different, idiosyncratic dialects, and the *truly* ancient Greek of
-Homer, centuries before the Attic Greek of Plato and Aristotle, is yet
-another thing.
+Ancient Greek is even more complicated. I think some words can take
+a total of 17 different forms, maybe even more. Also, the Romans
+made Latin a standardized language everywhere in their empire, while
+the independent Greek city-states had many different, idiosyncratic
+dialects. So that's not really 17 forms per word; it's 17 forms per
+word, per dialect.
 
 ## Todo
 
