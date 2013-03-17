@@ -19,7 +19,9 @@ module FlexVerb
   end
 
   class Transform < Parslet::Transform
-    rule(:integer => simple(:integer)) { IntegerLiteral.new(integer) }
+    rule(:integer => simple(:integer)) do
+      IntegerLiteral.new(integer)
+    end
   end
 end
 
