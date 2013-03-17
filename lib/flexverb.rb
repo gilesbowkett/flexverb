@@ -4,8 +4,16 @@ require 'parslet'
 module FlexVerb
   class Parser < Parslet::Parser
 
-    rule :expression do
+    rule :quote do
+      match('["\']').as(:quote)
+    end
+
+    rule :integer do
       match('[0-9]').repeat(1).as(:integer)
+    end
+
+    rule :expression do
+      integer | quote
     end
 
     root :expression
