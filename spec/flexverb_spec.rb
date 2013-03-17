@@ -12,10 +12,12 @@ describe FlexVerb do
     parsed.should == 123
   end
 
-  it "recognizes quotes" do
+  it "recognizes single quotes" do
     single = @transform.apply(@parser.parse("'"))
     single[:quote].should be_instance_of Parslet::Slice
+  end
 
+  it "recognizes double quotes" do
     double = @transform.apply(@parser.parse("\""))
     double[:quote].should be_instance_of Parslet::Slice
   end
