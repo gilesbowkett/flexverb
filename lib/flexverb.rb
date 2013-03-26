@@ -14,7 +14,7 @@ module FlexVerb
 
   class Interpreter
     def interpret(code)
-      verb, direct_object = code.collect {|k, v| Transform.new.apply(k => v)}
+      verb, direct_object = code.collect {|term| Transform.new.apply(term)}
       Kernel.send(verb, direct_object)
     end
   end
