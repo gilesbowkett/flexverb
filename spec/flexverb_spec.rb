@@ -1,25 +1,22 @@
 require 'flexverb'
 
 describe FlexVerb do
+  let(:xform) { FlexVerb::Transform.new }
 
-  before do
-    @parser = FlexVerb::Parser.new
-    @transform = FlexVerb::Transform.new
+  it "transforms a direct object" do
+    expect(xform.apply(:direct_object => '"hello world"')).to eq('hello world')
   end
 
-  it "parses integers" do
-    parsed = @transform.apply(@parser.parse("123")).eval
-    parsed.should == 123
+  it "transforms a verb" do
+    expect(xform.apply(:verb => 'print')).to eq(:puts)
   end
 
-  it "recognizes single quotes" do
-    single = @transform.apply(@parser.parse("'"))
-    single[:quote].should be_instance_of Parslet::Slice
-  end
+  it "executes a method" do
+    interpreter = FlexVerb::Interpreter.new
+    abstract_syntax_tree = {:verb => "print", :direct_object => '"hello world"'}
 
-  it "recognizes double quotes" do
-    double = @transform.apply(@parser.parse("\""))
-    double[:quote].should be_instance_of Parslet::Slice
+    Kernel.should_receive(:puts).with "hello world"
+    interpreter.interpret(abstract_syntax_tree)
   end
-
 end
+

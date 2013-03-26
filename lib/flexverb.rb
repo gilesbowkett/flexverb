@@ -2,33 +2,20 @@ require 'rubygems'
 require 'parslet'
 
 module FlexVerb
-  class Parser < Parslet::Parser
-
-    rule :quote do
-      match('["\']').as(:quote)
-    end
-
-    rule :integer do
-      match('[0-9]').repeat(1).as(:integer)
-    end
-
-    rule :expression do
-      integer | quote
-    end
-
-    root :expression
-
-  end
-
-  class IntegerLiteral < Struct.new(:integer)
-    def eval
-      integer.to_i
-    end
-  end
-
   class Transform < Parslet::Transform
-    rule(:integer => simple(:integer)) do
-      IntegerLiteral.new(integer)
+    rule(:direct_object => simple(:string)) do
+      String(string.gsub(/"/, ''))
+    end
+
+    rule(:verb => simple(:string)) do
+      :puts
+    end
+  end
+
+  class Interpreter
+    def interpret(code)
+      verb, direct_object = code.collect {|k, v| Transform.new.apply(k => v)}
+      Kernel.send(verb, direct_object)
     end
   end
 end
