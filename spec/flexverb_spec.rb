@@ -20,7 +20,6 @@ describe FlexVerb do
   end
 
   it "ignores word order" do
-    pending
     interpreter = FlexVerb::Interpreter.new
     abstract_syntax_tree = [{:direct_object => '"hello world"'}, {:verb => "print"}]
 

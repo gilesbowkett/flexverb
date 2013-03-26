@@ -13,10 +13,14 @@ module FlexVerb
   end
 
   class Interpreter
+
     def interpret(code)
-      verb, direct_object = code.collect {|term| Transform.new.apply(term)}
+      xform = Transform.new
+      verb = xform.apply(code.detect {|hash| hash.has_key? :verb})
+      direct_object = xform.apply(code.detect {|hash| hash.has_key? :direct_object})
       Kernel.send(verb, direct_object)
     end
+
   end
 end
 
