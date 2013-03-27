@@ -63,11 +63,30 @@ module FlexVerb
       direct_object_marker >> open_quote >> the_actual_direct_object >> close_quote
     end
 
-    rule :expression do
+    rule :space do
+      str " "
+    end
+
+    rule :term do
       verb | direct_object
     end
 
+    rule :expression do
+      term >> space.maybe >> term.maybe
+    end
+
     root :expression
+
+    def parse(code)
+      parsed = super(code)
+      if 1 == parsed.keys.size
+        parsed
+      else
+        parsed.collect do |key, value|
+          {key => value}
+        end
+      end
+    end
   end
 end
 

@@ -54,9 +54,10 @@ describe FlexVerb do
     end
 
     it "parses a complete line of code" do
-      pending
-      # verb(print) object("hello world").
-      # parse('verb(print) direct-object("hello world")').should eq
+      terms = [{:verb => "print"}, {:direct_object => '"hello world"'}]
+      # code = 'verb(print) direct-object("hello world")'
+      code = 'verb(print) direct-object("hello world")'
+      expect(parse(code)).to eq(terms)
     end
 
     it "recognizes a verb" do
@@ -64,7 +65,9 @@ describe FlexVerb do
     end
 
     it "recognizes a direct object" do
-      expect(parse('direct-object("hello world")')).to eq(:direct_object => '"hello world"')
+      code = 'direct-object("hello world")'
+      term = {:direct_object => '"hello world"'}
+      expect(parse(code)).to eq(term)
     end
 
     it "ignores term position"
