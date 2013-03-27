@@ -12,19 +12,19 @@ describe FlexVerb do
   end
 
   it "executes a method" do
-    interpreter = FlexVerb::Interpreter.new
     abstract_syntax_tree = [{:verb => "print"}, {:direct_object => '"hello world"'}]
+    interpreter = FlexVerb::Interpreter.new(abstract_syntax_tree)
 
     Kernel.should_receive(:puts).with "hello world"
-    interpreter.interpret(abstract_syntax_tree)
+    interpreter.interpret
   end
 
   it "ignores word order" do
-    interpreter = FlexVerb::Interpreter.new
     abstract_syntax_tree = [{:direct_object => '"hello world"'}, {:verb => "print"}]
+    interpreter = FlexVerb::Interpreter.new(abstract_syntax_tree)
 
     Kernel.should_receive(:puts).with "hello world"
-    interpreter.interpret(abstract_syntax_tree)
+    interpreter.interpret
   end
 
 end
