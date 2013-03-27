@@ -35,8 +35,8 @@ module FlexVerb
       str "verb"
     end
 
-    rule :anything do
-      (str "print").as :verb
+    rule :the_actual_verb do
+      (str(')').absent? >> any).repeat.as(:verb)
     end
 
     rule :open_quote do
@@ -48,7 +48,7 @@ module FlexVerb
     end
 
     rule :verb do
-      verb_marker >> open_quote >> anything >> close_quote
+      verb_marker >> open_quote >> the_actual_verb >> close_quote
     end
 
     root :verb
