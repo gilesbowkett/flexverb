@@ -48,5 +48,28 @@ describe FlexVerb do
     end
   end
 
+  context "Parser" do
+    def parse(code)
+      FlexVerb::Parser.new.parse(code)
+    end
+
+    it "executes a complete line of code" do
+      pending
+      # verb(print) object("hello world").
+      # parse('verb(print) direct-object("hello world")').should eq
+    end
+
+    it "recognizes a verb" do
+      expect(parse('verb(print)')).to eq(:verb => 'print')
+    end
+
+    it "recognizes a direct object"
+
+    it "recognizes verbose part-of-speech markers"
+
+    it "recognizes terse part-of-speech markers"
+      # v(print) o("hello world").
+  end
+
 end
 
