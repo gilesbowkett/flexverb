@@ -4,8 +4,8 @@ require 'parslet'
 module FlexVerb
 
   class Transform < Parslet::Transform
-    rule(:direct_object => simple(:string)) do
-      String(string.gsub(/"/, ''))
+    rule(:direct_object => simple(:slice)) do
+      String(slice.to_s.gsub(/"/, ''))
     end
 
     rule(:verb => simple(:string)) do
@@ -14,8 +14,8 @@ module FlexVerb
   end
 
   class Interpreter
-    def initialize(terms)
-      @terms = terms
+    def initialize(code)
+      @terms = Parser.new.parse code
       @transform = Transform.new
     end
 
