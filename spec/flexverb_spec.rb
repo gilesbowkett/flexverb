@@ -40,21 +40,21 @@ describe FlexVerb do
     context "with a complete line of code" do
       before do
         @terms = [{:verb => "print"}, {:direct_object => '"hello world"'}]
-        @code = 'verb(print) direct-object("hello world")'
       end
 
       it "parses" do
-        expect(parse(@code)).to eq(@terms)
+        code = 'verb(print) direct-object("hello world")'
+        expect(parse(code)).to eq(@terms)
       end
 
       it "allows arbitrary white space" do
-        @code = '      verb(print)     direct-object("hello world")    '
-        expect(parse(@code)).to eq(@terms)
+        code = '      verb(print)     direct-object("hello world")    '
+        expect(parse(code)).to eq(@terms)
       end
 
       it "ignores term position" do
-        @code = 'direct-object("hello world") verb(print)'
-        expect(parse(@code)).to eq(@terms.reverse!)
+        code = 'direct-object("hello world") verb(print)'
+        expect(parse(code)).to eq(@terms.reverse!)
       end
     end
 
