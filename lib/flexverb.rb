@@ -14,8 +14,8 @@ module FlexVerb
   end
 
   class Interpreter
-    def initialize(code)
-      @code = code
+    def initialize(terms)
+      @terms = terms
       @transform = Transform.new
     end
 
@@ -26,7 +26,7 @@ module FlexVerb
     end
 
     def extract_part_of_speech(name)
-      @transform.apply(@code.detect {|hash| hash.has_key? name})
+      @transform.apply(@terms.detect {|hash| hash.has_key? name})
     end
   end
 
