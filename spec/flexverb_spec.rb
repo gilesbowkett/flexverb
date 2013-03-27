@@ -63,7 +63,10 @@ describe FlexVerb do
         expect(parse(@code)).to eq(@terms)
       end
 
-      it "allows arbitrary white space"
+      it "allows arbitrary white space" do
+        @code = '      verb(print)     direct-object("hello world")    '
+        expect(parse(@code)).to eq(@terms)
+      end
 
       it "ignores term position" do
         @code = 'direct-object("hello world") verb(print)'

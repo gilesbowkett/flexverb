@@ -72,7 +72,7 @@ module FlexVerb
     end
 
     rule :expression do
-      term >> space.maybe >> term.maybe
+      space.repeat(0) >> term >> space.repeat(0) >> term.maybe >> space.repeat(0)
     end
 
     root :expression
