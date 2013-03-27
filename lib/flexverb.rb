@@ -32,11 +32,19 @@ module FlexVerb
 
   class Parser < Parslet::Parser
     rule :verb_marker do
-      str "verb"
+      (str "verb") | (str "v")
+    end
+
+    rule :direct_object_marker do
+      (str "direct-object") | (str "o")
     end
 
     rule :the_actual_verb do
       (str(')').absent? >> any).repeat.as(:verb)
+    end
+
+    rule :the_actual_direct_object do
+      (str(')').absent? >> any).repeat.as(:direct_object)
     end
 
     rule :open_quote do
@@ -51,7 +59,15 @@ module FlexVerb
       verb_marker >> open_quote >> the_actual_verb >> close_quote
     end
 
-    root :verb
+    rule :direct_object do
+      direct_object_marker >> open_quote >> the_actual_direct_object >> close_quote
+    end
+
+    rule :expression do
+      verb | direct_object
+    end
+
+    root :expression
   end
 end
 
