@@ -53,11 +53,22 @@ describe FlexVerb do
       FlexVerb::Parser.new.parse(code)
     end
 
-    it "parses a complete line of code" do
-      terms = [{:verb => "print"}, {:direct_object => '"hello world"'}]
-      # code = 'verb(print) direct-object("hello world")'
-      code = 'verb(print) direct-object("hello world")'
-      expect(parse(code)).to eq(terms)
+    context "with a complete line of code" do
+      before do
+        @terms = [{:verb => "print"}, {:direct_object => '"hello world"'}]
+        @code = 'verb(print) direct-object("hello world")'
+      end
+
+      it "parses" do
+        expect(parse(@code)).to eq(@terms)
+      end
+
+      it "allows arbitrary white space"
+
+      it "ignores term position" do
+        @code = 'direct-object("hello world") verb(print)'
+        expect(parse(@code)).to eq(@terms.reverse!)
+      end
     end
 
     it "recognizes a verb" do
@@ -69,8 +80,6 @@ describe FlexVerb do
       term = {:direct_object => '"hello world"'}
       expect(parse(code)).to eq(term)
     end
-
-    it "ignores term position"
 
     it "recognizes terse part-of-speech markers" do
       expect(parse('v(print)')).to eq(:verb => 'print')
