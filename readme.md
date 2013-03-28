@@ -7,12 +7,12 @@ benefits.
 
 ## Implementation
 
-I've only implemented the smallest possible subset of FlexVerb. (I will
-happily add contributors to the GitHub repo if I see sensible pull
-requests, though.) I implemented only a tiny subset partly because this
-is the first language I've ever implemented in the first place, and
-mostly because I only need a tiny subset working in order to make my
-point.
+There is hardly any implementation at all. I've only implemented the
+smallest possible subset of FlexVerb. (I will happily add contributors
+to the GitHub repo if I see sensible pull requests, though.) I
+implemented only a tiny subset partly because this is the first language
+I've ever implemented in the first place, and mostly because I only need
+a tiny subset working in order to make my point.
 
 Here is pretty much everything you can actually do, in real life, with
 FlexVerb today:
@@ -23,23 +23,29 @@ FlexVerb today:
     ↪  bin/flexverb hello_world.fv
     hello world
 
+That's pretty much it. That and a syntax definition file for Vim.
+
 ## Why FlexVerb is interesting anyway
 
 Most programming languages are based either on the language of modern
 Western mathematics, or the English language, or (most commonly) some
 synthesis of the two. Most of those syntheses are awkward, but some are
-graceful. However, the number of spoken human languages is incredibly
-vast, and many of them use very different structures from English. I
-believe that the role English plays, as a model for the overwhelming
-majority of programming languages, is very unlikely to last forever.
-Spoken languages also have an incredible virtue that, if I ever have
+graceful.
+
+However, the number of human languages is incredibly vast, and many of
+them use very different structures from English. I believe that the role
+English plays, as a model for the overwhelming majority of programming
+languages, is very unlikely to last forever.
+
+(Human languages also have an incredible virtue that, if I ever have
 children, I will fervently want a programming language to have: all
 spoken languages are easy for a child to learn. In fact, all spoken
 languages are **inevitable** for a child to learn, under the right
-circumstances.
+circumstances.)
 
 FlexVerb demonstrates what a programming language based on Latin and
-Ancient Greek might look like.
+Ancient Greek might look like, because those are the two human languages
+I know the most about, after English.
 
 ## Word order and transformation in classical Western languages
 
@@ -80,7 +86,7 @@ which it plays in English grammar, writers were free to use it for more
 subtle purposes. This is a freedom which code could, at least in theory,
 benefit from.
 
-FlexVerb is a toy language, implemented in Ruby via [Parslet](http://kschiess.github.com/parslet/),
+FlexVerb is a tiny toy language, implemented in Ruby via [Parslet](http://kschiess.github.com/parslet/),
 in which token order is inconsequential.
 
 For example:
@@ -96,15 +102,15 @@ More importantly, you can switch them around:
 
     o("hello world") v(print)
 
-So if you print "hello world", and then you print something else, use
-the first form.
+So if you print "hello world", and then you print something else, you
+would use the first form.
 
     v(print) o("hello world")
     v(print) o("I like turtles")
 
-But use the second form if you first print "hello world," and next you
-say it out loud through a speech synthesizer (like the `say` command in
-OS X).
+But you would use the second form if you first print "hello world," and
+next you say it out loud through a speech synthesizer (like the `say`
+command in OS X).
 
     o("hello world") v(print)
     o("hello world") v(say)
@@ -121,27 +127,27 @@ Which of course compresses to
     v(render) a(welcome) o(message)
     v(email) a(confirmation) o(message)
 
-Add syntax highlighting and permissive whitespace:
+Add permissive whitespace:
 
     v(render)   a(welcome)        o(message)
     v(email)    a(confirmation)   o(message)
 
-(screenshot)
-
 It's really easy to see how the above code sample could turn into a
-pair of `message` objects which have different content, and which each
-implement their `send` function slightly differently.
+pair of `message` classes which have different content, and which each
+implement their `send` function slightly differently. In Ruby:
+
+    WelcomeMessage.send
+    ConfirmationMessage.send
 
 Likewise, it's really easy to see how the following FlexVerb code could
-get shorter with a `with` statement like those found in [JavaScript](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Statements/with)
+get shorter with Ruby's `tap`, or a `with` statement like those found in
+[JavaScript](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Statements/with)
 and [Python](http://docs.python.org/release/2.5/whatsnew/pep-343.html):
 
     o("hello world")   v(print)
     o("hello world")   v(email)
     o("hello world")   v(render)
     o("hello world")   v(say)
-
-(syntax-coloring screenshot)
 
 Although FlexVerb has plenty of silly failings, it has one really
 wonderful advantage: it suggests refactorings very rapidly. It's really
@@ -156,9 +162,9 @@ recommend studying classical languages for any programmer.
 
 In Latin and Ancient Greek, the freedom to structure sentences any way
 you like, coupled with very explicit grammar, makes it really easy to
-surface implicit lists, grids, and hierarchies (also known as trees). I
-believe this simple, toy example of a programming language makes those
-same things easy by having those same characteristics.
+surface implicit lists, grids, and hierarchies. I believe this simple,
+toy example of a programming language makes those same things easy by
+having those same characteristics.
 
 ## Syntax Highlighting
 
@@ -167,17 +173,19 @@ includes a syntax highlighting file for Vim. This is not a fully-fledged
 [`pathogen`](https://github.com/tpope/vim-pathogen) plugin, and no other
 text editors are currently supported, but pull requests are welcome.
 
-## Epic humblebrag
+<img src="http://s3.amazonaws.com/giles/flexverb_032813/syntax.png">
 
-Syntax highlighting for FlexVerb greys out the `v()` stuff but
-color-codes the parts of speech distinctly. This allows you to recognize
-the purpose of a term as soon as you see it, without having to figure
-it out from the `verb()` or `direct-object()` markers, and it's
-actually how I first discovered syntax highlighting. I invented syntax
-highlighting independently long before I ever saw it in a text editor,
-back when I was studying Latin for fun after dropping out of college. I
-realize that every part of that last sentence is insane, but it's all
-true.
+## Epic humblebrag (or maybe just crazybrag)
+
+The syntax definition for FlexVerb tells Vim to treat the `v()` stuff as
+comments, de-emphasizing them in most color schemes, while highlighting
+the actual parts of speech distinctly. This allows you to recognize the
+purpose of a term as soon as you see it, without having to figure it out
+from the `verb()` or `direct-object()` markers, and that's actually how
+I first discovered syntax highlighting. I invented syntax highlighting
+independently long before I ever saw it in a text editor, back when I
+was studying Latin for fun after dropping out of college. I realize that
+every part of that last sentence is insane, but it's all true.
 
 I was taking a class through a local university's extension
 program. We were reading [a book in Latin by the philosopher
@@ -227,21 +235,8 @@ That's easy!
 
     s(5) v(plus) o(s(3) v(times) o(12))
 
-(syntax highlighting pic)
-
-You can just as easily express that as
-
-    v(add) o(o(12) s(3) v(multiply)) s(5)
-
-It looks weird, but it works. I believe a similar nesting is the
-standard Lisp response to operator precedence, and indeed with syntax
-highlighting this looks like a verbose Lisp.
-
-(pic)
-
-Consider the Lisp equivalent:
-
-    (+ (* 12 3) 5)
+Admittedly, it's ugly, but with a good syntax coloring setup, you could
+make it much easier to read.
 
 ## Not for production use, duh
 
@@ -263,12 +258,14 @@ Also, rather than two forms, "farmer" in Latin takes at least 10
 different forms, and that's just for beginner-level stuff like "the
 field was plowed by the farmers" and "this is the farmer's farm."
 
-Ancient Greek is even more complicated. I think some words can take a
-total of 17 different forms, maybe even more. Also, the Romans made
-Latin a standardized language everywhere in their empire, while the
-independent Greek city-states each developed their own different,
-idiosyncratic dialect. So that's not really 17 forms per word; it's 17
-forms per word, per dialect.
+Ancient Greek is even more complicated. I think some words have a total
+of 17 different *categories* of formal transformation. Also, the Romans
+made Latin a standardized language everywhere in their empire, while
+the independent Greek city-states each developed their own different,
+idiosyncratic dialect. So that's not really 17 categories of formal
+transformation per word; it's 17 categories of formal transformation per
+word, per dialect. The total number of forms a word can take in Ancient
+Greek is quite large.
 
 I've also oversimplified English. There are situations where you can
 shift around the position of the subject and the verb in an English
@@ -289,4 +286,9 @@ in Latin. It's insane even by Perl standards (although this is not
 necessarily a bad thing).
 
 http://www.csse.monash.edu.au/~damian/papers/HTML/Perligata.html
+
+SQL syntax is also very interesting in this context, as I believe
+it's the only computer language in serious use today which features
+prepositions, and is probably also more closely based on English than
+any other language in serious use today.
 
