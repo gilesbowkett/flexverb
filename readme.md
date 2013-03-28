@@ -162,19 +162,22 @@ same things easy by having those same characteristics.
 
 ## Syntax Highlighting
 
-In a language like this, syntax highlighting is crucial. See the
-`highlighters` dir for syntax highlighting files for both TextMate and
-Vim.
-
-Syntax highlighting for FlexVerb greys out the `v()` stuff but
-color-codes the parts of speech distinctly.
+In a language like this, syntax highlighting is crucial. FlexVerb
+includes a syntax highlighting file for Vim. This is not a fully-fledged
+[`pathogen`](https://github.com/tpope/vim-pathogen) plugin, and no other
+text editors are currently supported, but pull requests are welcome.
 
 ## Epic humblebrag
 
-This is actually how I first discovered syntax highlighting. I invented
-it independently long before I ever saw it in a text editor, back when
-I was studying Latin for fun after dropping out of college. I realize
-that every part of that last sentence is insane, but it's all true.
+Syntax highlighting for FlexVerb greys out the `v()` stuff but
+color-codes the parts of speech distinctly. This allows you to recognize
+the purpose of a term as soon as you see it, without having to figure
+it out from the `verb()` or `direct-object()` markers, and it's
+actually how I first discovered syntax highlighting. I invented syntax
+highlighting independently long before I ever saw it in a text editor,
+back when I was studying Latin for fun after dropping out of college. I
+realize that every part of that last sentence is insane, but it's all
+true.
 
 I was taking a class through a local university's extension
 program. We were reading [a book in Latin by the philosopher
