@@ -2,8 +2,12 @@
 
 require './lib/flexverb'
 
-if "-e" == ARGV[0]
-  code = ARGV[1]
-  FlexVerb::Interpreter.new(code).interpret
+code = if "-e" == ARGV[0]
+  ARGV[1]
+else
+  filename = ARGV[0]
+  File.read(filename).chomp
 end
+
+FlexVerb::Interpreter.new(code).interpret
 
