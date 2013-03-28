@@ -1,8 +1,9 @@
-# Flexverb
+# Flexverb: A Serious Toy Language
 
-TLDR: Flexverb is a weird toy programming language based on Latin and
-Ancient Greek. It is essentially a blog post, in executable code form,
-about an obscure linguistic quirk and its unexpected benefits.
+TLDR: Flexverb is a barely-implemented programming language based on
+Latin and Ancient Greek. It is essentially a blog post, in executable
+code form, about an obscure linguistic quirk and its unexpected
+benefits.
 
 ## Word order and transformation in classical Western languages
 
@@ -41,8 +42,8 @@ the central role in Latin or Greek grammar which it plays in English
 grammar, writers were free to use it for more subtle purposes. This is a
 freedom which code could, at least in theory, benefit from.
 
-Flexverb is a toy language, implemented in Ruby via Parselet, in which
-token order is inconsequential.
+Flexverb is a toy language, implemented in Ruby via [Parslet](http://kschiess.github.com/parslet/),
+in which token order is inconsequential.
 
 For example:
 
@@ -227,9 +228,7 @@ forms per word, per dialect.
 
 ## Todo
 
-* Implement all specs
 * Implement say as say
-* Implement print as print
 
 ## Related projects
 
