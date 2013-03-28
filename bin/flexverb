@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require './lib/flexverb'
+
+if "-e" == ARGV[0]
+  code = ARGV[1]
+  FlexVerb::Interpreter.new(code).interpret
+end
+
