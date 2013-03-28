@@ -147,6 +147,8 @@ function, and then read the whole sentence through.
 
 ## Math
 
+I haven't implemented this, but here's how I imagine it working.
+
     s(23) v(times) o(5)
 
 corresponds to
@@ -163,16 +165,17 @@ Meanwhile,
 
     v(multiply) s(23) o(5)
 
-is how Lisps phrase basic math. (Flexverb gives you both `times` and
+retains those exact same semantics, but phrases it in the way Lisps
+phrase basic math. (Flexverb should probably give you both `times` and
 `multiply` for convenience.) To translate:
 
     (* 23 5)
 
-Flexverb permits either phrasing.
+Flexverb should permit either phrasing.
 
 ## Operator precedence
 
-[@lsegal provided a simple math challenge](https://twitter.com/lsegal/status/312778714737934336):
+[Loren Segal provided a simple math challenge](https://twitter.com/lsegal/status/312778714737934336):
 
     5 + 3 * 12
 
@@ -202,6 +205,19 @@ Obviously this is an exploratory project. I don't expect the language to
 see a whole lot of adoption, and it's a very incomplete implementation.
 It's really just a fun toy for people who find languages interesting.
 
+## Documentation
+
+With apologies to Loren Segal, I chose [TomDoc](http://tomdoc.org/)
+because I prefer the way it reads when I'm looking at the code. I
+think this matters first because as the developer, I'm going to be
+looking at the code, and second because as an experienced developer,
+I typically distrust documentation and would prefer to read the code
+anyway. In my experience most documentation is both wrong and annoying,
+and documention which is merely wrong or merely annoying is above
+average. Long story short, although I think YARD is a very admirable
+project, I think its design underestimates the importance of readable
+code.
+
 ## A note about the actual human languages
 
 Everything I said above oversimplifies Latin. To use actual Latin
@@ -215,12 +231,12 @@ forms, "farmer" in Latin takes at least 10 different forms, and that's
 just for beginner-level stuff like "the field was plowed by the farmers"
 and "this is the farmer's farm."
 
-Ancient Greek is even more complicated. I think some words can take
-a total of 17 different forms, maybe even more. Also, the Romans
-made Latin a standardized language everywhere in their empire, while
-the independent Greek city-states had many different, idiosyncratic
-dialects. So that's not really 17 forms per word; it's 17 forms per
-word, per dialect.
+Ancient Greek is even more complicated. I think some words can take a
+total of 17 different forms, maybe even more. Also, the Romans made
+Latin a standardized language everywhere in their empire, while the
+independent Greek city-states each developed their own different,
+idiosyncratic dialect. So that's not really 17 forms per word; it's 17
+forms per word, per dialect.
 
 ## Todo
 
