@@ -1,21 +1,58 @@
-# Flexverb: A Serious Toy Language
+# FlexVerb: A Serious Toy Language
 
-TLDR: Flexverb is a barely-implemented programming language based on
+TLDR: FlexVerb is a barely-implemented programming language based on
 Latin and Ancient Greek. It is essentially a blog post, in executable
 code form, about an obscure linguistic quirk and its unexpected
 benefits.
 
+## Implementation
+
+I've only implemented the smallest possible subset of FlexVerb. (I will
+happily add contributors to the GitHub repo if I see sensible pull
+requests, though.) I implemented only a tiny subset partly because this
+is the first language I've ever implemented in the first place, and
+mostly because I only need a tiny subset working in order to make my
+point.
+
+Here is pretty much everything you can actually do, in real life, with
+FlexVerb today:
+
+    ↪  bin/flexverb -e 'verb(print) direct-object("hello world")'
+    hello world
+
+    ↪  bin/flexverb hello_world.fv
+    hello world
+
+## Why FlexVerb is interesting anyway
+
+Most programming languages are based either on the language of modern
+Western mathematics, or the English language, or (most commonly) some
+synthesis of the two. Most of those syntheses are awkward, but some are
+graceful. However, the number of spoken human languages is incredibly
+vast, and many of them use very different structures from English. I
+believe that the role English plays, as a model for the overwhelming
+majority of programming languages, is very unlikely to last forever.
+Spoken languages also have an incredible virtue that, if I ever have
+children, I will fervently want a programming language to have: all
+spoken languages are easy for a child to learn. In fact, all spoken
+languages are **inevitable** for a child to learn, under the right
+circumstances.
+
+FlexVerb demonstrates what a programming language based on Latin and
+Ancient Greek might look like.
+
 ## Word order and transformation in classical Western languages
 
-When I was in high school, I really enjoyed classical languages. I got
-nostalgic about that recently. And this prompted an idea.
+Classical Western languages communicate a word's grammatical purpose not
+through the word's location in the sentence, but through its form. If
+you want to say "farmer," in Latin, you can't, at least, not yet. There
+isn't enough information to determine the shape of the word, because the
+shape of the word will depend on how you use it. So you have to also
+choose its use case.
 
-Classical languages communicate a word's grammatical purpose not through
-the word's location in the sentence, but through its form. If you want
-to say "farmer," in Latin, you can't, at least, not yet. There isn't
-enough information to determine the shape of the word, because the shape
-of the word will depend on how you use it. You have to also choose its
-use case.
+(I hope it's obvious how a language where it is impossible to say a word
+until you've determined its purpose could be useful for training young
+programmers.)
 
 The Latin word for "farmer" will be "agricola" if there is one farmer who
 is the subject of the sentence. But if the farmer plays the role of the
@@ -37,12 +74,13 @@ differ insofar as each communicates the same basic idea, they do differ
 as sentences. Latin and Greek used these differences to communicate
 nuance and emphasis. "Agricola says hello" emphasizes that the farmer
 said *hello*, as opposed to goodbye. "Says hello agricola" emphasizes
-that it was the *farmer* who said it. Since word order didn't play
-the central role in Latin or Greek grammar which it plays in English
-grammar, writers were free to use it for more subtle purposes. This is a
-freedom which code could, at least in theory, benefit from.
+that it was the *farmer* who said it (as opposed to the goatherd).
+Since word order didn't play the central role in Latin or Greek grammar
+which it plays in English grammar, writers were free to use it for more
+subtle purposes. This is a freedom which code could, at least in theory,
+benefit from.
 
-Flexverb is a toy language, implemented in Ruby via [Parslet](http://kschiess.github.com/parslet/),
+FlexVerb is a toy language, implemented in Ruby via [Parslet](http://kschiess.github.com/parslet/),
 in which token order is inconsequential.
 
 For example:
@@ -94,7 +132,7 @@ It's really easy to see how the above code sample could turn into a
 pair of `message` objects which have different content, and which each
 implement their `send` function slightly differently.
 
-Likewise, it's really easy to see how the following Flexverb code could
+Likewise, it's really easy to see how the following FlexVerb code could
 get shorter with a `with` statement like those found in [JavaScript](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Statements/with)
 and [Python](http://docs.python.org/release/2.5/whatsnew/pep-343.html):
 
@@ -105,9 +143,9 @@ and [Python](http://docs.python.org/release/2.5/whatsnew/pep-343.html):
 
 (syntax-coloring screenshot)
 
-Although Flexverb has plenty of silly failings, it has one really
+Although FlexVerb has plenty of silly failings, it has one really
 wonderful advantage: it suggests refactorings very rapidly. It's really
-easy to look at Flexverb code and see ways to structure it. In my
+easy to look at FlexVerb code and see ways to structure it. In my
 opinion, this echoes one of the virtues of human classical languages.
 
 Lawyers often learn classical languages prior to entering law school,
@@ -118,9 +156,9 @@ recommend studying classical languages for any programmer.
 
 In Latin and Ancient Greek, the freedom to structure sentences any way
 you like, coupled with very explicit grammar, makes it really easy to
-surface implicit lists, grids, and hierarchies. I believe this simple,
-toy example of a programming language makes those same things easy by
-having those same characteristics.
+surface implicit lists, grids, and hierarchies (also known as trees). I
+believe this simple, toy example of a programming language makes those
+same things easy by having those same characteristics.
 
 ## Syntax Highlighting
 
@@ -128,7 +166,7 @@ In a language like this, syntax highlighting is crucial. See the
 `highlighters` dir for syntax highlighting files for both TextMate and
 Vim.
 
-Syntax highlighting for Flexverb greys out the `v()` stuff but
+Syntax highlighting for FlexVerb greys out the `v()` stuff but
 color-codes the parts of speech distinctly.
 
 ## Epic humblebrag
@@ -150,7 +188,7 @@ function, and then read the whole sentence through.
 
 I haven't implemented this, but here's how I imagine it working.
 
-    s(23) v(times) o(5)
+    subject(23) verb(times) direct-object(5)
 
 corresponds to
 
@@ -167,12 +205,14 @@ Meanwhile,
     v(multiply) s(23) o(5)
 
 retains those exact same semantics, but phrases it in the way Lisps
-phrase basic math. (Flexverb should probably give you both `times` and
+phrase basic math. (FlexVerb should probably give you both `times` and
 `multiply` for convenience.) To translate:
 
     (* 23 5)
 
-Flexverb should permit either phrasing.
+Although FlexVerb does not yet support the `subject()` idea, FlexVerb
+already permits this kind of flexible phrasing, and adding a math
+implementation would be trivial. (Pull requests welcome!)
 
 ## Operator precedence
 
@@ -214,10 +254,11 @@ agricola" would be something more like "agricola dicit vale" and
 "dicit vale agricola," but I think "agricola vale dicit" and "vale
 dicit agricola" would actually be more idiomatic. Word order is not
 entirely inconsequential in classical languages, it's just much, much
-less significant and rigid than it is in English. Also, rather than two
-forms, "farmer" in Latin takes at least 10 different forms, and that's
-just for beginner-level stuff like "the field was plowed by the farmers"
-and "this is the farmer's farm."
+less significant and rigid than it is in English.
+
+Also, rather than two forms, "farmer" in Latin takes at least 10
+different forms, and that's just for beginner-level stuff like "the
+field was plowed by the farmers" and "this is the farmer's farm."
 
 Ancient Greek is even more complicated. I think some words can take a
 total of 17 different forms, maybe even more. Also, the Romans made
@@ -226,11 +267,23 @@ independent Greek city-states each developed their own different,
 idiosyncratic dialect. So that's not really 17 forms per word; it's 17
 forms per word, per dialect.
 
-## Todo
+I've also oversimplified English. There are situations where you can
+shift around the position of the subject and the verb in an English
+sentence and still get away with it. Examples:
 
-* Implement say as say
+    Quoth the raven, 'nevermore.'
+
+    What light through yonder window breaks?
+
+Both examples are not only archaic but also from poetry. I don't
+actually know if this is a limitation of English, or a limitation of my
+knowledge of English.
 
 ## Related projects
+
+Perligata is a Perl library which enables you to write code purely
+in Latin. It's insane even by Perl standards (although this is not
+necessarily a bad thing).
 
 http://www.csse.monash.edu.au/~damian/papers/HTML/Perligata.html
 
