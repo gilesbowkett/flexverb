@@ -205,22 +205,6 @@ Obviously this is an exploratory project. I don't expect the language to
 see a whole lot of adoption, and it's a very incomplete implementation.
 It's really just a fun toy for people who find languages interesting.
 
-## Documentation
-
-With apologies to Loren Segal, I chose [TomDoc](http://tomdoc.org/)
-because I prefer the way it reads when I'm looking at the code. I
-think this matters first because as the designer of the language, I'm
-going to be looking at the code, and second because, as an experienced
-developer, I typically distrust documentation and would prefer to read
-the code anyway.
-
-In my experience, most documentation is both wrong and annoying, and
-documentation which is merely wrong, or merely annoying, is above average.
-Documentation which is both accurate and readable is so rare that you
-can make thousands of dollars writing it. I know this because I've done
-it. Long story short, although I think YARD is a very admirable project,
-I think its design underestimates the importance of readable code.
-
 ## A note about the actual human languages
 
 Everything I said above oversimplifies Latin. To use actual Latin
