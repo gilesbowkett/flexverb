@@ -4,8 +4,16 @@ require 'parslet'
 module FlexVerb
 
   class Transform < Parslet::Transform
-    rule(:direct_object => simple(:slice)) do
-      String(slice.to_s.gsub(/"/, ''))
+    rule(:string => simple(:string_contents)) do
+      String(string_contents)
+    end
+
+    rule(:int => simple(:int)) do
+      Integer(int)
+    end
+
+    rule(:direct_object => simple(:value)) do
+      value
     end
 
     rule(:verb => simple(:string)) do
@@ -40,27 +48,43 @@ module FlexVerb
     end
 
     rule :the_actual_verb do
-      (str(')').absent? >> any).repeat.as(:verb)
+      (part_close_quote.absent? >> any).repeat.as(:verb)
     end
 
     rule :the_actual_direct_object do
-      (str(')').absent? >> any).repeat.as(:direct_object)
+      (string | int).as(:direct_object)
+    end
+  
+    rule :str_open_quote do
+      str('"')
+    end
+  
+    rule :str_close_quote do
+      str('"')
+    end
+  
+    rule :string do
+      str_open_quote >> (str_close_quote.absent? >> any).repeat.as(:string) >> str_close_quote
     end
 
-    rule :open_quote do
+    rule :int do
+      match('\d').repeat.as(:int)
+    end
+
+    rule :part_open_quote do
       str "("
     end
 
-    rule :close_quote do
+    rule :part_close_quote do
       str ")"
     end
 
     rule :verb do
-      verb_marker >> open_quote >> the_actual_verb >> close_quote
+      verb_marker >> part_open_quote >> the_actual_verb >> part_close_quote
     end
 
     rule :direct_object do
-      direct_object_marker >> open_quote >> the_actual_direct_object >> close_quote
+      direct_object_marker >> part_open_quote >> the_actual_direct_object >> part_close_quote
     end
 
     rule :space do
