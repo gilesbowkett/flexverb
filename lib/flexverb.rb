@@ -63,7 +63,7 @@ module FlexVerb
       def message
         "missing part of speech ‘#{@missing_part_name}’"
       end
-  end
+    end
   end
 
   class Parser < Parslet::Parser
