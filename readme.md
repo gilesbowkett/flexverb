@@ -153,8 +153,12 @@ and [Python](http://docs.python.org/release/2.5/whatsnew/pep-343.html):
 
 Although FlexVerb has plenty of silly failings, it has one really
 wonderful advantage: it suggests refactorings very rapidly. It's really
-easy to look at FlexVerb code and see ways to structure it. In my
-opinion, this echoes one of the virtues of human classical languages.
+easy to look at FlexVerb code and spot alternative ways to structure it.
+The restructuring is really easy too; it's a zero-cost thing to move
+terms around and see which ones line up most easily, which in my opinion
+is a good first step in any refactoring anyway.
+
+This echoes one of the virtues of human classical languages.
 
 Lawyers often learn classical languages prior to entering law school,
 not just because Western legal systems contain a lot of terminology
