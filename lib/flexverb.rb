@@ -16,26 +16,54 @@ module FlexVerb
       value
     end
 
-    rule(:verb => simple(:string)) do
-      :puts
+    rule(:verb => simple(:verb)) do
+      verb.to_sym
     end
   end
 
-  class Interpreter
-    def initialize(code)
-      @terms = Parser.new.parse code
-      @transform = Transform.new
+  module Interpreter
+    class Interpreter
+      def initialize(code)
+        @terms = Parser.new.parse code
+        @transform = Transform.new
+		@environment = {:global_subject => GlobalSubject.new}
+      end
+
+      def interpret
+        verb = extract_part_of_speech(:verb)
+        direct_object = extract_part_of_speech(:direct_object)
+
+        subject_name = begin
+          extract_part_of_speech(:subject)
+		rescue MissingPartOfSpeechError
+		  :global_subject
+        end
+		subject = @environment[subject_name]
+
+        subject.send(verb, direct_object)
+      end
+ 
+      def extract_part_of_speech(name)
+        term = @terms.detect {|hash| hash.has_key? name}
+        raise MissingPartOfSpeechError.new(name) if term.nil?
+        @transform.apply(term)
+      end
     end
 
-    def interpret
-      verb = extract_part_of_speech(:verb)
-      direct_object = extract_part_of_speech(:direct_object)
-      Kernel.send(verb, direct_object)
+    class GlobalSubject
+      def print(*args)
+        Kernel.puts(*args)
+      end
     end
 
-    def extract_part_of_speech(name)
-      @transform.apply(@terms.detect {|hash| hash.has_key? name})
-    end
+    class MissingPartOfSpeechError < StandardError
+      def initialize(missing_part_name)
+        @missing_part_name = missing_part_name
+      end
+      def message
+        "missing part of speech ‘#{@missing_part_name}’"
+      end
+	end
   end
 
   class Parser < Parslet::Parser

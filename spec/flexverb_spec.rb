@@ -15,13 +15,13 @@ describe FlexVerb do
 
     it "transforms a verb" do
       xform = FlexVerb::Transform.new
-      expect(xform.apply(:verb => 'print')).to eq(:puts)
+      expect(xform.apply(:verb => 'print')).to eq(:print)
     end
   end
 
   context "Interpreter" do
     def interpret(code)
-      FlexVerb::Interpreter.new(code).interpret
+      FlexVerb::Interpreter::Interpreter.new(code).interpret
     end
 
     it "executes a method with a string" do
@@ -40,6 +40,11 @@ describe FlexVerb do
       code = 'direct-object("hello world") verb(print)'
       Kernel.should_receive(:puts).with "hello world"
       interpret(code)
+    end
+
+	it "raises an error when the verb does not exist" do
+      code = 'verb(nosuchverb) direct-object("hello world")'
+      expect { interpret(code) }.to raise_error(NoMethodError)
     end
   end
 
