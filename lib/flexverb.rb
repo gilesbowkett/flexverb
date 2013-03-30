@@ -48,7 +48,7 @@ module FlexVerb
     end
 
     rule :the_actual_verb do
-      (part_close_quote.absent? >> any).repeat.as(:verb)
+      (term_close_quote.absent? >> any).repeat.as(:verb)
     end
 
     rule :the_actual_direct_object do
@@ -71,20 +71,20 @@ module FlexVerb
       match('\d').repeat.as(:int)
     end
 
-    rule :part_open_quote do
+    rule :term_open_quote do
       str "("
     end
 
-    rule :part_close_quote do
+    rule :term_close_quote do
       str ")"
     end
 
     rule :verb do
-      verb_marker >> part_open_quote >> the_actual_verb >> part_close_quote
+      verb_marker >> term_open_quote >> the_actual_verb >> term_close_quote
     end
 
     rule :direct_object do
-      direct_object_marker >> part_open_quote >> the_actual_direct_object >> part_close_quote
+      direct_object_marker >> term_open_quote >> the_actual_direct_object >> term_close_quote
     end
 
     rule :space do
