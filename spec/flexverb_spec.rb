@@ -3,19 +3,29 @@ require 'flexverb'
 describe FlexVerb do
 
   context "Transform" do
-    it "transforms a direct object with a string" do
+    def expect_transforms_to(from, to)
       xform = FlexVerb::Transform.new
-      expect(xform.apply(:direct_object => {:string => 'hello world'})).to eq('hello world')
+	  expect(xform.apply(from)).to eq(to)
     end
 
-    it "transforms a direct object with an int" do
-      xform = FlexVerb::Transform.new
-      expect(xform.apply(:direct_object => {:int => 42})).to eq(42)
+    it "transforms a string" do
+      expect_transforms_to({:string => 'hello world'}, 'hello world')
+    end
+
+    it "transforms an int" do
+      expect_transforms_to({:int => 42}, 42)
+    end
+
+    it "transforms a direct object with a value" do
+      expect_transforms_to({:direct_object => 42}, 42)
+    end
+
+    it "transforms a direct object with a string" do
+      expect_transforms_to({:direct_object => {:string => 'hello world'}}, 'hello world')
     end
 
     it "transforms a verb" do
-      xform = FlexVerb::Transform.new
-      expect(xform.apply(:verb => 'print')).to eq(:print)
+      expect_transforms_to({:verb => 'print'}, :print)
     end
   end
 
