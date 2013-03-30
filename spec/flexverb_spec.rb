@@ -5,7 +5,7 @@ describe FlexVerb do
   context "Transform" do
     def expect_transforms_to(from, to)
       xform = FlexVerb::Transform.new
-	  expect(xform.apply(from)).to eq(to)
+      expect(xform.apply(from)).to eq(to)
     end
 
     it "transforms a string" do
@@ -52,7 +52,7 @@ describe FlexVerb do
       interpret(code)
     end
 
-	it "raises an error when the verb does not exist" do
+    it "raises an error when the verb does not exist" do
       code = 'verb(nosuchverb) direct-object("hello world")'
       expect { interpret(code) }.to raise_error(NoMethodError)
     end

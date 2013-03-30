@@ -26,7 +26,7 @@ module FlexVerb
       def initialize(code)
         @terms = Parser.new.parse code
         @transform = Transform.new
-		@environment = {:global_subject => GlobalSubject.new}
+        @environment = {:global_subject => GlobalSubject.new}
       end
 
       def interpret
@@ -35,10 +35,10 @@ module FlexVerb
 
         subject_name = begin
           extract_part_of_speech(:subject)
-		rescue MissingPartOfSpeechError
-		  :global_subject
+        rescue MissingPartOfSpeechError
+          :global_subject
         end
-		subject = @environment[subject_name]
+        subject = @environment[subject_name]
 
         subject.send(verb, direct_object)
       end
@@ -63,7 +63,7 @@ module FlexVerb
       def message
         "missing part of speech ‘#{@missing_part_name}’"
       end
-	end
+  end
   end
 
   class Parser < Parslet::Parser
