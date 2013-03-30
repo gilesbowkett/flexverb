@@ -174,8 +174,11 @@ having those same characteristics.
 
 ## Syntax Highlighting
 
-In a language like this, syntax highlighting is crucial. FlexVerb
-includes a syntax highlighting file for Vim. This is not a fully-fledged
+In a language like this, syntax highlighting is crucial, because
+you really want the `verb()` and `direct-object()` markers to
+fade into the background. (Good syntax highlighting for Lisp
+de-emphasizes parentheses for the same reason.) So FlexVerb includes
+a syntax highlighting file for Vim. This is not a fully-fledged
 [`pathogen`](https://github.com/tpope/vim-pathogen) plugin, and no other
 text editors are currently supported, but pull requests are welcome.
 
@@ -241,8 +244,10 @@ That's easy!
 
     s(5) v(plus) o(s(3) v(times) o(12))
 
-Admittedly, it's ugly, but with a good syntax coloring setup, you could
-make it much easier to read.
+Admittedly, it's ugly, but with good syntax highlighting, you could
+make it much easier to read. It would basically look like this:
+
+      5    plus      3    times    12
 
 ## Not for production use, duh
 
