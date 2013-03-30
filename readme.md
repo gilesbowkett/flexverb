@@ -86,6 +86,8 @@ which it plays in English grammar, writers were free to use it for more
 subtle purposes. This is a freedom which code could, at least in theory,
 benefit from.
 
+## FlexVerb brings this language feature to code
+
 FlexVerb is a tiny toy language, implemented in Ruby via [Parslet](http://kschiess.github.com/parslet/),
 in which token order is inconsequential.
 
