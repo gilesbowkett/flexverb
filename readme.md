@@ -287,10 +287,9 @@ necessarily a bad thing).
 
 http://www.csse.monash.edu.au/~damian/papers/HTML/Perligata.html
 
-SQL syntax is also very interesting in this context, as I believe
-it's the only computer language in serious use today which features
-prepositions, and is probably also more closely based on English than
-any other language in serious use today.
+SQL syntax is also very interesting in this context, as I believe that
+among computer languages in serious use today, it's the only one which
+features prepositions, and also the one most closely based on English.
 
 [Ithkuil](http://www.newyorker.com/reporting/2012/12/24/121224fa_fact_foer?currentPage=all)
 is an invented human language designed to prevent ambiguity.
