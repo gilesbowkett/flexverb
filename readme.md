@@ -49,12 +49,13 @@ I know the most about, after English.
 
 ## Word order and transformation in classical Western languages
 
-Classical Western languages communicate a word's grammatical purpose not
-through the word's location in the sentence, but through its form. If
-you want to say "farmer," in Latin, you can't, at least, not yet. There
-isn't enough information to determine the shape of the word, because the
-shape of the word will depend on how you use it. So you have to also
-choose its use case.
+Classical Western languages (and their modern descendants, to a lesser
+degree) communicate a word's grammatical purpose not through the word's
+location in the sentence, but through its form. If you want to say
+"farmer," in Latin, you can't, at least, not yet. There isn't enough
+information to determine the shape of the word, because the shape of the
+word will depend on how you use it. So you have to also choose its use
+case.
 
 (I hope it's obvious how a language where it is impossible to say a word
 until you've determined its purpose could be useful for training young
